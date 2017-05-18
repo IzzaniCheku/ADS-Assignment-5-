@@ -26,13 +26,7 @@ for i in range(len(base)):
     while len(base[i]) < n:
         base[i].insert(0,0)
         
-alph = ['A','B','C','D','E']
-tmep = []
-
-##for i in range(len(base)):
-##    for j in range(len(base[i])):
-##        base[i][j] = alph[base[i][j]]
-prxnt(base)
+##print(base)
 
 tmpe = []
 adList = []
@@ -42,7 +36,7 @@ for i in range(len(base)):
     tmpe.insert(0,i)
     termp.insert(0,i)
     for j in range(len(base)):
-        if base[i][0 - (n - 1):] == base[j][:(n - 1)] and i != j:
+        if base[i][0 - (n - 1):] == base[j][:(n - 1)] and base[i] != base[j]:
             tmpe.append(j)
             termp.append(False)
     adList.append(tmpe)
@@ -50,8 +44,8 @@ for i in range(len(base)):
     tmpe = []
     termp = []
 
-prxnt(adList)
-prxnt(falseTable)
+##prxnt(adList)
+##prxnt(falseTable)
 
 cango = []
 possibleways = [] 
@@ -88,10 +82,10 @@ while megastop == False:
     startpos = nextpos 
 
 finalpath = []
-print(possibleways)
+#print(possibleways)
 for i in range(len(possibleways[0])):
     finalpath.append(possibleways[0][i])
-    print(finalpath)
+    #print(finalpath)
 del possibleways[0]
 
 while len(possibleways) != 0:
@@ -113,13 +107,43 @@ while len(possibleways) != 0:
     for i in range(len(rightside)):
         finalpath.append(rightside[i])
         
-    del possibleways[0]    
-print(finalpath)
-
+    del possibleways[0]
+    
+##print(finalpath)
+##print(base)
+    
 for i in range(len(finalpath)):
-##    for j in range(len(base)):
-##        finalpath[i] = finalpath[base[i]]
-    finalpath[i] = base[i]
-##        break 
+    for j in range(len(base)):
+        if finalpath[i] == j:
+            variable = base[j]
+            finalpath[i] = variable
+##print(finalpath)
+##print(base)
 
-        
+alph = ['A','B','C','D','E']
+
+#prxnt(finalpath)
+newitem = ''
+for i in range(len(finalpath)):
+    for j in range(len(finalpath[i])):
+        item = finalpath[i][j]
+        newitem = newitem + alph[item]
+    finalpath[i] = newitem
+    newitem = ''
+##print(finalpath)
+
+
+eulerian = ''
+eulerian = eulerian + finalpath[0]
+for i in range(1,len(finalpath)):
+    x = finalpath[i][-1]
+    eulerian = eulerian + x 
+
+
+# IAN HELP
+'''
+for i in range(len(finalpath)):
+    for j in range(len(finalpath[i])):
+        finalpath[i][j] = alph[finalpath[i][j]]
+##    print(finalpath)
+'''
